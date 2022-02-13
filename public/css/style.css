@@ -11,7 +11,7 @@
   flex: 2;
   justify-content: space-around;
   align-items: center;
-  padding: 1.5%;
+  padding: 2%;
   background-image: linear-gradient(to bottom right, rgb(2, 2, 85), lightblue);
   color: rgb(231, 225, 225);
   display: flex;
@@ -20,6 +20,7 @@
 }
 
 a {
+
   color: azure;
   text-decoration: none;
 }
@@ -73,6 +74,13 @@ margin: 4%;
 
 .card-text {
  padding: 2%;
-
-
 }
+
+a:hover {
+  padding: 0.2%;
+  background-color: rgb(2, 2, 85);
+  color:  rgb(204, 231, 240);
+  border-radius: 5px;
+  box-shadow: 0 5px 15px lightcyan;
+}
+
