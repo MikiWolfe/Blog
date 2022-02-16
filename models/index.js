@@ -12,4 +12,4 @@ const User = require('./User');
 // Comment belongTo Post (Comment.post_id)
 
 
-module.exports = {User, Project}
+// module.exports = {User, Project}
