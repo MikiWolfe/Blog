@@ -10,10 +10,26 @@ Comment.init({
     primaryKey: true,
     autoIncrement: true,
   },
-  text: {
+  comment_text: {
     type: DataTypes.STRING,
     allowNull: false,
   },
+},
+{
+user_id: {
+  type: DataTypes.INTEGER,
+  refrenences: {
+    model: 'user',
+    key: 'id'
+  }
+},
+post_id : {
+  type : DataTypes.INTEGER,
+  refrenences : {
+    model : 'post',
+    key: 'id',
+  },
+},
 },
 {
     sequelize,
