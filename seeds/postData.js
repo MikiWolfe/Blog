@@ -3,7 +3,8 @@ const { Post } = require('../models');
 const postdata = [
   {
     title: "A little bit about me:",
-    text: "My favourite front end lanuage is CSS and my favourite back end lanuage is Node."
+    text: "My favourite front end lanuage is CSS and my favourite back end lanuage is Node.",
+    
   },
   {
     title: "First Post",
