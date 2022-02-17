@@ -11,3 +11,5 @@ router.get("/", (req, res) => {
     res.render("index", dataObj);
   });
 });
+
+module.exports = router
