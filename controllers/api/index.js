@@ -4,4 +4,7 @@ const userRoutes = require('./userRoute');
 const postRoutes = require('./postRoute');
 const commentRoutes = require('./commentRoute');
 
-router.ue
+router.use("/user", userRoutes)
+router.use("/post", postRoutes)
+router.use("/comment", commentRoutes)
+
