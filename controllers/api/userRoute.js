@@ -4,21 +4,43 @@ const { User, Post, Comment } = require("../../models");
 // Get users
 router.get("/", async (req, res) => {
   try {
-    await User.findAll({
+    const dbUserData = await User.findAll({
       attributes: {
         exclude: ["password"],
-        include: [
-          {
-            model: Post,
-            attributes: ["id", "title", "post_text"],
-          },
-          {
-            model: Comment,
-            attributes: ["id", "comment_text", "post_id"],
-          },
-        ],
       },
     });
+    res.status(200).json(dbUserData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+// Get user by id
+router.get("./:id", async (req, res) => {
+  try {
+    const dbUserData = await User.findOne({
+      where: {
+        id: req.params.id,
+      },
+      include: [
+        {
+          model: Post,
+          attributes: ["id", "title", "post_text"],
+        },
+        {
+          model: Comment,
+          attributes: ["id", "comment_text"],
+          include: {
+            model: Post,
+            attributes: ["title"],
+          },
+        },
+      ],
+    });
+    if (!dbUserData) {
+      res.status(404).json({ message: " No user found with this id." });
+      return;
+    }
   } catch (err) {
     res.status(500).json(err);
   }
@@ -50,7 +72,7 @@ router.post("/login", async (req, res) => {
     });
     if (!dbUserData) {
       res.status(400).json({
-        message: "Incorrect user name or password. Please tyr again.",
+        message: "Incorrect user name or password. Please try again.",
       });
       return;
     }
