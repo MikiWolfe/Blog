@@ -71,7 +71,7 @@ router.post("/login", async (req, res) => {
       },
     });
     if (!dbUserData) {
-      res.status(400).json({
+      res.status(404).json({
         message: "Incorrect user name or password. Please try again.",
       });
       return;
@@ -81,7 +81,7 @@ router.post("/login", async (req, res) => {
 
     if (!validPassword) {
       res
-        .status(400)
+        .status(404)
         .json({ message: "Incorrect username or password. Please try again" });
       return;
     }
@@ -100,10 +100,10 @@ router.post("/login", async (req, res) => {
 router.post("./logout", (req, res) => {
   if (req.session.loggedIn) {
     req.session.destroy(() => {
-      res.status(204).end();
+      res.status(200).end();
     });
   } else {
-    res.status(404).end();
+    res.status(500).end();
   }
 });
 

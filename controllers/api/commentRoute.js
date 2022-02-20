@@ -1,6 +1,5 @@
 const { Comment } = require("../../models");
 const router = require("express").Router();
-
 const sequelize = require("../../config/connection");
 const withAuth = require("../../utils/authApi");
 
@@ -27,7 +26,8 @@ router.get("/:id", async (req, res) => {
     res.status(500).json(err);
   }
 });
-// creat a comment
+
+// create a comment
 router.post("/", withAuth, async (req, res) => {
   try {
     if (req.session) {
@@ -62,12 +62,11 @@ router.put("/:id", withAuth, async (req, res) => {
       res.status(404).json({ message: "No comment with this ID" });
     }
   } catch (err) {
-    res.status(400).json(err);
+    res.status(500).json(err);
   }
 });
 
 // Delete comments
-
 router.delete("/:id", withAuth, async (req, res) => {
   try {
     const dbCommentData = await Comment.destroy({
@@ -81,7 +80,7 @@ router.delete("/:id", withAuth, async (req, res) => {
     }
     res.status(200).json(dbCommentData);
   } catch (err) {
-    res.status(400).json(err);
+    res.status(500).json(err);
   }
 });
 
