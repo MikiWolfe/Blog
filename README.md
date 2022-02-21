@@ -41,7 +41,7 @@ None
 ## Questions
 Please reach out if you have any questions about this application:
 GitHub profile: https://github.com/MikiWolfe
-Please contact: *Later* with any questions. 
+
 
 ### Link to Deployed Site
 Link to the deployed site: https://tech-blog313.herokuapp.com/
