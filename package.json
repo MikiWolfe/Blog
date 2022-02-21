@@ -1,4 +1,12 @@
-{
+{  "name": "blog",
+
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "watch": "nodemon server.js",
+    "seed": "node seeds/index.js" }, 
 
     "dependencies": {
       "bcrypt": "^5.0.1",
