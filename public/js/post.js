@@ -13,13 +13,15 @@ if (title && text) {
     body: JSON.stringify({
       title,
       text,
+      username,
+      date
     }),
     headers: {
       "Content-Type": "application/json",
     },
   });
   if (response.ok) {
-    document.location.replace("/dashboard");
+    document.location.replace("/homepage");
   } else {
     console.log("Unable to create post. Please try again");
   }

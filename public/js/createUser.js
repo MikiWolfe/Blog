@@ -1,5 +1,3 @@
-const { response } = require("express");
-
 const createUserFormHandler = async (event) => {
   event.preventDefault();
 };

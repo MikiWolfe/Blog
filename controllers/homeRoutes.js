@@ -11,6 +11,16 @@ router.get("/", async (req, res) => {
   });
 });
 
+router.get("/", async (req, res) => {
+  const commentData = await Comment.findAll();
+  const comments = commentData.map((comment) => comment.get({ plain: true }));
+  res.render("homepage", {
+    comments,
+    logged_in: req.session.logged_in,
+  });
+});
+
+
 router.get("/post/:id", withAuth, async (req, res) => {
   try {
     const userData = await User.findByPk(req.session.user_id, {
@@ -34,5 +44,10 @@ router.get("/login", (req, res) => {
   }
   res.render("login");
 });
+
+router.get('*', (req, res) => {
+  res.redirect("/404")
+  return;
+})
 
 module.exports = router;
