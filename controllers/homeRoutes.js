@@ -3,7 +3,12 @@ const { Post, Comment, User } = require("../models");
 const withAuth = require("../utils/auth");
 
 router.get("/", async (req, res) => {
-  const postData = await Post.findAll();
+  const postData = await Post.findAll({
+    include : {
+      model : User,
+      attributes: { include : ['username']}
+    }
+  });
   const posts = postData.map((post) => post.get({ plain: true }));
   res.render("homepage", {
     posts,
@@ -44,6 +49,10 @@ router.get("/login", (req, res) => {
   }
   res.render("login");
 });
+
+
+
+
 
 router.get('*', (req, res) => {
   res.redirect("/404")

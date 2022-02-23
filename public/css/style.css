@@ -56,7 +56,8 @@ button {
   margin-right: auto;
   flex-direction: row;
   align-items: center;
-  background-color: rgb(2, 2, 85);
+  background-color: rgb(109, 20, 20);
+  color: white;
   padding: 1%;
 }
 

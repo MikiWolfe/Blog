@@ -2,13 +2,9 @@
 <div class="card">
     <h3 class="card-header">{{title}}</h3>
     <p class="card-text">{{post_text}}</p>
-    <p class="card-text"> - {{username}} , {{date}}</p>
-</div>
-<div class="card">
-    <p class="card-text">{{comment_text}}</p>
-    <p class="card-text"> - {{username}} , {{date}}</p>
+    <p class="card-text"> - {{post.username}} , {{date}}</p>
 </div>
 
+
 {{/each}}
-<script src='/js/post.js'></script>
-<script src='/js/comment.js'></script>
+

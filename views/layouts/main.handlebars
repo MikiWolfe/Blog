@@ -12,8 +12,8 @@
    
     <div>
     <nav class ="bar">
-        <a href="/">Home</a>
-        <a href="">Dashboard</a>
+        <a href="/">Home</a> 
+        <a href="/post">New Post</a>
         {{#if loggedIn}}
         <a href="/login">Log out</a>
 {{else}}
@@ -22,6 +22,7 @@
     </nav>
     <h1 class="gradient">Welcome to the tech blog!</h1>
     <h3 class="gradient">Where the rules are made up and the points don't matter!</h3>
+   
     <main>
          {{{body}}}
     </main>
