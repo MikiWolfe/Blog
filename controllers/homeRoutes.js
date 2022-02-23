@@ -4,10 +4,10 @@ const withAuth = require("../utils/auth");
 
 router.get("/", async (req, res) => {
   const postData = await Post.findAll({
-    include : {
-      model : User,
-      attributes: { include : ['username']}
-    }
+    include: {
+      model: User,
+      attributes: { include: ["username"] },
+    },
   });
   const posts = postData.map((post) => post.get({ plain: true }));
   res.render("homepage", {
@@ -25,7 +25,6 @@ router.get("/", async (req, res) => {
   });
 });
 
-
 router.get("/post/:id", withAuth, async (req, res) => {
   try {
     const userData = await User.findByPk(req.session.user_id, {
@@ -33,7 +32,7 @@ router.get("/post/:id", withAuth, async (req, res) => {
     });
 
     const user = userData.get({ plain: true });
-    res.render("profile", {
+    res.render("dashboard", {
       ...user,
       logged_in: true,
     });
@@ -44,19 +43,24 @@ router.get("/post/:id", withAuth, async (req, res) => {
 
 router.get("/login", (req, res) => {
   if (req.session.logged_in) {
-    res.redirect("/profile");
+    res.redirect("/dashboard");
     return;
   }
   res.render("login");
 });
 
+router.get("/signup", (req, res) => {
+  if (req.session.loggedIn) {
+    res.redirect("/dashboard");
+    return;
+  }
 
+  res.render("signup");
+});
 
-
-
-router.get('*', (req, res) => {
-  res.redirect("/404")
+router.get("*", (req, res) => {
+  res.redirect("/404");
   return;
-})
+});
 
 module.exports = router;
