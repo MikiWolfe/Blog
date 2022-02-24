@@ -105,8 +105,11 @@ label {
   padding: 2%;
 }
 h2 {
-padding: 1%
+padding: 1%;
 }
 
+.form-input {
+  padding: 0.2%;
+}
 
 
