@@ -38,7 +38,7 @@ router.get("/post/:id", withAuth, async (req, res) => {
     });
 
     const posts = postData.get({ plain: true });
-    res.render("viewpost", {
+    res.render("post", {
       ...posts,
       logged_in: true,
     });
