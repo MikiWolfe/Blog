@@ -20,7 +20,7 @@ router.get("/", withAuth, async (req, res) => {
   }
 });
 
-router.get("/new", withAuth, async (req, res) => {
+router.get("/post", withAuth, async (req, res) => {
  try { res.render("post", {
     layout: "dashboard",
   });

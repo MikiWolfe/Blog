@@ -16,24 +16,30 @@ router.get("/", async (req, res) => {
   });
 });
 
-router.get("/", async (req, res) => {
-  const commentData = await Comment.findAll();
-  const comments = commentData.map((comment) => comment.get({ plain: true }));
-  res.render("homepage", {
-    comments,
-    logged_in: req.session.logged_in,
-  });
-});
-
 router.get("/post/:id", withAuth, async (req, res) => {
   try {
-    const userData = await User.findByPk(req.session.user_id, {
-      attributes: { exclude: ["password"] },
+    const postData = await Post.findByPk(req.params.id, {
+      include: [
+        {
+          model: User,
+          attributes: ["username"],
+        },
+        {
+          model: Comment,
+          attributes: ["comment_text", "user_id"],
+          include: [
+            {
+              model: User,
+              attributes: ["username"],
+            },
+          ],
+        },
+      ],
     });
 
-    const user = userData.get({ plain: true });
-    res.render("dashboard", {
-      ...user,
+    const posts = postData.get({ plain: true });
+    res.render("viewpost", {
+      ...posts,
       logged_in: true,
     });
   } catch (err) {
@@ -43,7 +49,15 @@ router.get("/post/:id", withAuth, async (req, res) => {
 
 router.get("/login", (req, res) => {
   if (req.session.logged_in) {
-    res.redirect("/dashboard");
+    res.redirect("/");
+    return;
+  }
+  res.render("login");
+});
+
+router.get("/logout", (req, res) => {
+  if (!req.session.logged_in) {
+    res.redirect("/");
     return;
   }
   res.render("login");
@@ -51,7 +65,7 @@ router.get("/login", (req, res) => {
 
 router.get("/signup", (req, res) => {
   if (req.session.loggedIn) {
-    res.redirect("/dashboard");
+    res.redirect("dashboard");
     return;
   }
 
@@ -59,7 +73,7 @@ router.get("/signup", (req, res) => {
 });
 
 router.get("*", (req, res) => {
-  res.redirect("/404");
+  res.render("404");
   return;
 });
 

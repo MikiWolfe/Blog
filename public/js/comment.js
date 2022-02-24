@@ -5,7 +5,7 @@ const commentFormHandler = async (event) => {
 };
 
 const post_id = document.querySelector("#post-title").getAttribute("data-id");
-const comment = document.querySelector("comment").value.trim();
+const comment = document.querySelector("#comment").value.trim();
 
 console.log(comment);
 if (comment) {
