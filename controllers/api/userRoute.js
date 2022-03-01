@@ -2,7 +2,7 @@ const router = require("express").Router();
 const { User } = require("../../models");
 
 // POST route to create a new user.
-router.post("/login", async (req, res) => {
+router.post("/signup", async (req, res) => {
   try {
     const userData = await User.create(req.body);
     req.session.user_id = userData.id;
@@ -11,7 +11,7 @@ router.post("/login", async (req, res) => {
     // Save user responses to a new User object.
     req.session.save(() => {
       req.session.logged_in = true;
-
+console.log("different different string")
       res.status(200).json(userData);
     });
   } catch (err) {

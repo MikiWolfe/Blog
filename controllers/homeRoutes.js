@@ -10,6 +10,7 @@ router.get("/", async (req, res) => {
     },
   });
   const posts = postData.map((post) => post.get({ plain: true }));
+  console.log(posts, "string")
   res.render("homepage", {
     posts,
     logged_in: req.session.logged_in,
@@ -65,7 +66,7 @@ router.get("/logout", (req, res) => {
 
 router.get("/signup", (req, res) => {
   if (req.session.loggedIn) {
-    res.redirect("dashboard");
+    res.redirect("/");
     return;
   }
 

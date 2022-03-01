@@ -18,10 +18,13 @@
             <a href="/">Home</a>
             <a href="dashboard">Dashboard</a>
             <a href="/post">New Post</a>
+
             {{#if loggedIn}}
-            <a href="/login">Log out</a>
+            <a id = "logout">Log out</a>
             {{else}}
+
             <a href="/login">Log in</a>
+
             {{/if}}
         </nav>
         <h1 class="gradient">Welcome to the tech blog!</h1>

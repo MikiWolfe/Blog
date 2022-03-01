@@ -12,7 +12,7 @@ const loginFormHandler = async (event) => {
     });
 
     if (response.ok) {
-      document.location.replace("dashboard");
+      alert("you are now logged in");
     } else {
       alert("Failed to log in. Try again please");
     }

@@ -5,8 +5,7 @@ const newPost = async (event) => {
 const newPostForm = document.querySelector(".new-post-form");
 const title = document.querySelector("#new-post-title").value.trim();
 const text = document.querySelector("#new-post-text").value.trim();
-console.log(title, text)
-
+console.log(title, text);
 
 if (title && text) {
   const response = await fetch("/api/post", {
@@ -20,12 +19,9 @@ if (title && text) {
     },
   });
   if (response.ok) {
-    document.location.replace("dashboard");
+    response.redirect("/");
   } else {
-    document.location.replace("/404");
+    response.redirect("/404");
   }
 }
-document
-  .querySelector('.new-post-form')
-  .addEventListener('submit', newPost);
-
+document.querySelector(".new-post-form").addEventListener("submit", newPost);

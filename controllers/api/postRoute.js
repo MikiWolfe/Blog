@@ -24,6 +24,7 @@ router.get("/", async (req, res) => {
       ],
     });
     res.status(200).json(dbPostData);
+    console.log("different string")
   } catch (err) {
     res.status(500).json(err);
   }
@@ -57,7 +58,7 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-router.post("./", withAuth, async (req, res) => {
+router.post("/", withAuth, async (req, res) => {
   try {
     if (req.session) {
       const dbPostData = await Post.create({
@@ -73,14 +74,19 @@ router.post("./", withAuth, async (req, res) => {
   }
 });
 
-router.put("./:id", withAuth, async (req, res) => {
+router.put("/:id", withAuth, async (req, res) => {
   try {
-    const dbPostData = await Post.update({
-      where: {
+    const dbPostData = await Post.update(
+     {
         title: req.body.title,
         post_text: req.body.post_text,
       },
-    });
+      {
+        where : {
+          id: req.params.id
+        }
+      }
+    );
     if (!dbPostData) {
       res.status(404).json({ message: "No post found with this ID" });
       return;
@@ -91,7 +97,7 @@ router.put("./:id", withAuth, async (req, res) => {
   }
 });
 
-router.delete("./:id", withAuth, async (req, res) => {
+router.delete("/:id", withAuth, async (req, res) => {
   try {
     const dbPostData = await Post.destroy({
       where: {
