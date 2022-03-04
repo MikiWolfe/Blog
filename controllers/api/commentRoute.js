@@ -2,7 +2,7 @@ const { Comment } = require("../../models");
 const router = require("express").Router();
 
 // create a comment
-router.post("/", withAuth, async (req, res) => {
+router.post("/", async (req, res) => {
   try {
     if (req.session) {
       const dbCommentData = await Comment.create({
@@ -41,7 +41,7 @@ router.put("/:id", async (req, res) => {
 });
 
 // Delete comments
-router.delete("/:id", withAuth, async (req, res) => {
+router.delete("/:id", async (req, res) => {
   try {
     const dbCommentData = await Comment.destroy({
       where: {

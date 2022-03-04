@@ -1,0 +1,27 @@
+<div>
+    <nav class="bar">
+        <a href="/">Home</a>
+
+        {{#if logged_in}}
+
+        <a href="/dashboard">Dashboard</a>
+
+        {{else }}
+        <a href="/login">Dashboard</a>
+        {{/if}}
+
+        <a href="/post">New Post</a>
+
+        {{#if logged_in}}
+
+        <a id="logout">Log out</a>
+
+        {{else}}
+
+        <a href="/login">Log in</a>
+
+        {{/if}}
+    </nav>
+    <h1 class="gradient">Welcome to the tech blog!</h1>
+    <h3 class="gradient">Where the rules are made up and the points don't matter!</h3>
+</div>
