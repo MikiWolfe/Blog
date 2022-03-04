@@ -1,64 +1,8 @@
-const { Post, Comment, User } = require("../../models");
+const { Post } = require("../../models");
 const router = require("express").Router();
-const sequelize = require("../../config/connection");
-const withAuth = require("../../utils/authApi");
 
-// Get all posts with data
-router.get("/", async (req, res) => {
-  try {
-    const dbPostData = await Post.findAll({
-      attributes: ["id", "title", "post_text"],
-      include: [
-        {
-          model: User,
-          attributes: ["username"],
-        },
-        {
-          model: Comment,
-          attributes: ["id", "comment_text", "post_id", "user_id"],
-          include: {
-            model: User,
-            attributes: ["username"],
-          },
-        },
-      ],
-    });
-    res.status(200).json(dbPostData);
-    console.log("different string")
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
-
-// Get one post by ID returned with data
-router.get("/:id", async (req, res) => {
-  try {
-    const dbPostData = await Post.findOne({
-      where: {
-        id: req.params.id,
-      },
-      attributes: ["id", "title", "post_text"],
-      include: [
-        {
-          model: User,
-          attributes: ["username"],
-        },
-        {
-          model: Comment,
-          attributes: ["id", "comment_text", "post_id", "user_id"],
-        },
-      ],
-    });
-    if (!dbPostData) {
-      res.status(404).json({ message: "No post with that ID found." });
-      return;
-    }
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
-
-router.post("/", withAuth, async (req, res) => {
+// Create a post
+router.post("/", async (req, res) => {
   try {
     if (req.session) {
       const dbPostData = await Post.create({
@@ -74,17 +18,18 @@ router.post("/", withAuth, async (req, res) => {
   }
 });
 
-router.put("/:id", withAuth, async (req, res) => {
+// Edit one post
+router.put("/:id", async (req, res) => {
   try {
     const dbPostData = await Post.update(
-     {
+      {
         title: req.body.title,
         post_text: req.body.post_text,
       },
       {
-        where : {
-          id: req.params.id
-        }
+        where: {
+          id: req.params.id,
+        },
       }
     );
     if (!dbPostData) {
@@ -97,7 +42,8 @@ router.put("/:id", withAuth, async (req, res) => {
   }
 });
 
-router.delete("/:id", withAuth, async (req, res) => {
+// Delete a post
+router.delete("/:id", async (req, res) => {
   try {
     const dbPostData = await Post.destroy({
       where: {

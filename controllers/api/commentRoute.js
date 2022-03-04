@@ -1,31 +1,5 @@
 const { Comment } = require("../../models");
 const router = require("express").Router();
-const sequelize = require("../../config/connection");
-const withAuth = require("../../utils/authApi");
-
-// get all comments
-router.get("/", async (req, res) => {
-  try {
-    const dbCommentData = await Comment.findAll({});
-    res.status(200).json(dbCommentData);
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
-
-// Get one comment by ID
-router.get("/:id", async (req, res) => {
-  try {
-    const dbCommentData = await Comment.findOne({
-      where: {
-        id: req.params.id,
-      },
-    });
-    res.status(200).json(dbCommentData);
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
 
 // create a comment
 router.post("/", withAuth, async (req, res) => {
@@ -44,7 +18,7 @@ router.post("/", withAuth, async (req, res) => {
 });
 
 //  Update comment
-router.put("/:id", withAuth, async (req, res) => {
+router.put("/:id", async (req, res) => {
   try {
     if (req.session) {
       const dbCommentData = await Comment.update(
