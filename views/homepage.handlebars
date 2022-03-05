@@ -1,10 +1,10 @@
 {{> navheader}}
 {{#each posts as |post|}}
 <div class="card">
-    <h3 class="card-header">{{title}}</h3>
+    <h3 class="card-header"><a id="post-title" data-id="{{post.id}}" href="/post/{{post.id}}">{{title}}</a></h3>
     <p class="card-text">{{post_text}}</p>
-    <p class="card-text"> {{user.username}}, {{format_date createdAt}}</p>
-
+    <p class="card-text"> -- {{user.username}}, {{format_date createdAt}}</p>
+ <p class="card-text"></p>
 </div>
 
 
