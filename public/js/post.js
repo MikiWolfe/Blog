@@ -2,7 +2,7 @@ const newPost = async (event) => {
   event.preventDefault();
 };
 
-const newPostForm = document.querySelector(".new-post-form");
+const newPostForm = document.querySelector("#new-post-form");
 const title = document.querySelector("#new-post-title").value.trim();
 const text = document.querySelector("#new-post-text").value.trim();
 console.log(title, text);
@@ -19,7 +19,7 @@ if (title && text) {
     },
   });
   if (response.ok) {
-    response.redirect("/");
+    response.redirect("/dashboard");
   } else {
     response.redirect("/404");
   }

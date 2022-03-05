@@ -1,6 +1,7 @@
-  <div class="login-card">
+  {{> navheader}}
+  <div  class="login-card">
     <h2 class="page-title">Login</h2>
-    <form class="form login-form">
+    <form id = "login-form" class="form login-form">
       <div class="form-group">
         <label for="user-login">Username:</label>
         <input class="form-input" type="text" id="user-login" />
@@ -10,14 +11,14 @@
         <input class="form-input" type="password" id="pass-login" />
       </div>
       <div class="form-group">
-        <button class="btn btn-primary" type="submit">login</button>
+        <button class="btn" type="submit">Login</button>
       </div>
     </form>
   </div>
  
 </div>
 
-<div class="login-card">
+<div class="signup-link">
   <h2>Don't have an account? Create one here:</h2>
   <button><a href="signup">Sign up</a></button>
 </div>

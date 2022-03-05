@@ -4,14 +4,15 @@ const { User } = require("../../models");
 // POST route to create a new user.
 router.post("/signup", async (req, res) => {
   try {
-    const userData = await User.create(req.body);
+    const userData = await User.create({
+      username: req.body.username,
+      password: req.body.password,
+    });
     req.session.user_id = userData.id;
-    req.session.password = userData.password;
+    req.session.logged_in = true;
 
-    // Save user responses to a new User object.
     req.session.save(() => {
-      req.session.logged_in = true;
-console.log("different different string")
+      console.log("different different string");
       res.status(200).json(userData);
     });
   } catch (err) {
@@ -19,10 +20,11 @@ console.log("different different string")
   }
 });
 
+// POST route to login a user
 router.post("/login", async (req, res) => {
   try {
     const userData = await User.findOne({
-      where: { user_name: req.body.username },
+      where: { username: req.body.username },
     });
 
     if (!userData) {
@@ -44,14 +46,14 @@ router.post("/login", async (req, res) => {
     req.session.logged_in = true;
 
     req.session.save(() => {
-
-      res.json({ user: userData, message: "You are now logged in!" });
+      res.json({ message: "You are now logged in!" });
     });
   } catch (err) {
     res.status(400).json(err);
   }
 });
 
+// POST route to log out
 router.post("/logout", (req, res) => {
   if (req.session.logged_in) {
     req.session.destroy(() => {
