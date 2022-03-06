@@ -1,2 +1,31 @@
 {{>navheader}}
+<div class = "card">
+<h4 data-id="{{id}}" class="card-header"> {{title}} </h4>
+<div class="card-text">
+    {{post_text}}
+</div>
+
+<h5 class="card-header"> Comments: </h5>
+{{#each comments as |comment|}}
+<div class="card-text">
+<p class="card-text">{{comment.comment_text}}</p>
+    <p class="card-text"> -- {{comment.user.username}}, {{format_date createdAt}}</p>
+</div>
+{{/each}}
+{{#if logged_in}}
+<form>
+    <div class="form-group">
+        <label class="card-header" for="comment" class="comment">Enter comment here:</label>
+    <textarea class="card-text" class="form-control" id="comment"></textarea>
+    <button id ="commentBtn"type = "submit">Comment</button>
+    </div>
+</form>
+{{/if}}
+</div>
+
+{{#if logged_in}}
+<script src = "/js/comment.js"></script>
+{{/if}}
+
+
 
