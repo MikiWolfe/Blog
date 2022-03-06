@@ -1,6 +1,6 @@
 {{>navheader}}
 <div class = "card">
-<h4 data-id="{{id}}" class="card-header"> {{title}} </h4>
+<h4 id = "blog-title" data-id="{{id}}" class="card-header"> {{title}} </h4>
 <div class="card-text">
     {{post_text}}
 </div>
@@ -24,7 +24,7 @@
 </div>
 
 {{#if logged_in}}
-<script src = "/js/comment.js"></script>
+<script src = "/js/onepost.js"></script>
 {{/if}}
 
 
