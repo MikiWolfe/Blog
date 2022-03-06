@@ -12,6 +12,8 @@ router.get("/", async (req, res) => {
   });
 });
 
+
+
 router.get("/newpost", withAuth, (req, res) => {
   res.render("newpost", {
     layout: "dashboard",

@@ -5,7 +5,7 @@ const newComment = document.querySelector("#comment");
 const addComment = async (event) => {
   event.preventDefault();
 
-  const post_id = document.querySelector("#blog-title").getAttribute("data-id");
+  const post_id = document.querySelector("#post-id").getAttribute("data-id");
   const comment_text = document.querySelector("#comment").value.trim();
 
   if (comment_text) {
