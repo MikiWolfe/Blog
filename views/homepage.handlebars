@@ -7,8 +7,9 @@
  <p class="card-text"></p>
 </div>
 {{/each}}
+<button id="new-post-btn"> <a href ="/newpost">New Post</a></button>
 
-{{#each comments as |comment|}}
+{{!-- {{#each comments as |comment|}}
 <div class="card">
 <p class="card-text">{{comment.comment_text}}</p>
     <p class="card-text"> -- {{comment.user.username}}, {{format_date comment.createdAt}}</p>
@@ -22,9 +23,6 @@
         </div>
         <button type="submit" class="btn" >Submit</button>
     </form>
-    {{/if}}
+    {{/if}} --}}
 
-{{#if logged_in}}
-<script src="/js/comment.js"></script>
-{{/if}}
 
